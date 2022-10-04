@@ -14,9 +14,12 @@ import {
   HomeIcon,
   SearchIcon,
 } from "@heroicons/react/solid";
+import { signIn, signOut, useSession } from "next-auth/react"
 
 
 function Header() {
+  const { data: session } = useSession();
+
   return (
     <div className=" sticky-top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
       <div className="relative h-10 w-20 flex-shrink-0 cursor-pointer">
@@ -63,13 +66,33 @@ function Header() {
     </div>
 
     {/* Sign In / Sign Out */}
-    <div className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
-      <div className="relative h-5 w-5 flex-shrink-0">
-      <Image objectFit="contain" src="https://cdn-icons-png.flaticon.com/512/1946/1946543.png" 
-      layout="fill" alt=""  />
+    {session ? (
+       <div onClick={() => signOut()} className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
+       <div className="relative h-5 w-5 flex-shrink-0">
+       <Image objectFit="contain"
+       src="https://cdn-icons-png.flaticon.com/512/1946/1946543.png" 
+       layout="fill" 
+       alt=""  />
+       </div>
+       <p className="text-gray-400">Sign Out</p>
+     </div>
+
+    ): (
+      <div onClick={() => signIn()}
+          className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
+        <div className="relative h-5 w-5 flex-shrink-0">
+          <Image 
+            objectFit="contain"
+            src="https://cdn-icons-png.flaticon.com/512/1946/1946543.png" 
+            layout="fill" 
+            alt=""  
+      />
       </div>
+
       <p className="text-gray-400">Sign In</p>
+      
     </div>
+    )}    
     </div>
   );
 }
