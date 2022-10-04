@@ -9,8 +9,7 @@ import {
     SpeakerphoneIcon,
     VideoCameraIcon,
 } from "@heroicons/react/outline";
-import {
-  BeakerIcon,
+import {  
   ChevronDownIcon,
   HomeIcon,
   SearchIcon,
@@ -45,7 +44,7 @@ function Header() {
         <button type="submit" hidden />
       </form>
 
-      <div className="flex">
+      <div className="mx-5 hidden items-center space-x-2 text-gray-500 lg:inline-flex">
         <SparklesIcon className="icon" />
         <GlobeIcon className="icon" />
         <VideoCameraIcon className="icon" />
@@ -55,6 +54,22 @@ function Header() {
         <PlusIcon className="icon" />
         <SpeakerphoneIcon className="icon" />
       </div>
+      <div className="mx-5 my-2 flex lg:hidden">
+    <div className="space-y-2">
+      <span className="block w-8 h-0.5 bg-gray-500 animate-pulse" />
+      <span className="block w-8 h-0.5 bg-gray-500 animate-pulse" />
+      <span className="block w-8 h-0.5 bg-gray-500 animate-pulse" />
+    </div>
+    </div>
+
+    {/* Sign In / Sign Out */}
+    <div className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
+      <div className="relative h-5 w-5 flex-shrink-0">
+      <Image objectFit="contain" src="https://cdn-icons-png.flaticon.com/512/1946/1946543.png" 
+      layout="fill" alt=""  />
+      </div>
+      <p className="text-gray-400">Sign In</p>
+    </div>
     </div>
   );
 }
